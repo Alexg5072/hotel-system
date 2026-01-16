@@ -1,0 +1,1800 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard | Sistema Hotelero Roomix</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body class="dashboard-body">
+  
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <div class="logo">
+      <h2>HOTEL ROOMIX</h2>
+    </div>
+    <nav class="menu">
+      <a href="#" class="menu-item active" onclick="mostrarSeccion('dashboard')">Dashboard</a>
+      <a href="#" class="menu-item" onclick="mostrarSeccion('clientes')">Clientes</a>
+      <a href="#" class="menu-item" onclick="mostrarSeccion('reservas')">Reservas</a>
+      <a href="#" class="menu-item" onclick="mostrarSeccion('habitaciones')">Habitaciones</a>
+      <a href="#" class="menu-item" onclick="mostrarSeccion('servicios')">Servicios</a>
+      <a href="#" class="menu-item" onclick="mostrarSeccion('facturacion')">Facturación</a>
+      <a href="#" class="menu-item" onclick="mostrarSeccion('inventario')">Inventario</a>
+      <a href="#" class="menu-item" onclick="mostrarSeccion('eventos')">Eventos</a>
+      <a href="#" class="menu-item" onclick="mostrarSeccion('reportes')">Reportes</a>
+      <a href="#" class="menu-item" onclick="mostrarSeccion('empleados')">Empleados</a>
+      <a href="#" class="menu-item" onclick="mostrarSeccion('mantenimiento')">Mantenimiento</a>
+      <a href="#" class="menu-item" onclick="mostrarSeccion('marketing')">Marketing</a>
+      <a href="#" class="menu-item" onclick="mostrarSeccion('configuracion')">Configuración</a>
+    </nav>
+    <div class="user-info">
+      <p id="usuario-nombre">Admin User</p>
+      <p id="usuario-rol">Administrador</p>
+      <button onclick="logout()" class="btn-logout">Cerrar Sesión</button>
+    </div>
+  </aside>
+
+  <!-- Main Content -->
+  <main class="main-content">
+    <header class="header">
+      <div class="header-left">
+        <h1>Sistema de Gestión Hotelera</h1>
+        <p class="header-subtitle">Hotel Roomix - Sistema Integral de Administración</p>
+      </div>
+      <div class="header-info">
+        <div class="info-item">
+          <span class="info-label">Fecha:</span>
+          <span id="fecha"></span>
+        </div>
+        <div class="info-item">
+          <span class="info-label">Hora:</span>
+          <span id="hora"></span>
+        </div>
+      </div>
+    </header>
+
+    <!-- Notificaciones -->
+    <div class="notificaciones-panel">
+      <div class="notificacion notificacion-info">
+        <span class="notif-icon">i</span>
+        <span>3 reservas para hoy - Confirmar check-in de 2 clientes</span>
+        <button class="notif-close" onclick="this.parentElement.style.display='none'">X</button>
+      </div>
+      <div class="notificacion notificacion-warning">
+        <span class="notif-icon">!</span>
+        <span>Habitación 502 requiere mantenimiento urgente</span>
+        <button class="notif-close" onclick="this.parentElement.style.display='none'">X</button>
+      </div>
+      <div class="notificacion notificacion-success">
+        <span class="notif-icon">✓</span>
+        <span>2 facturas pagadas en las últimas 24 horas</span>
+        <button class="notif-close" onclick="this.parentElement.style.display='none'">X</button>
+      </div>
+    </div>
+
+    <!-- Dashboard Section -->
+    <section id="dashboard" class="seccion activa">
+      <div class="estadisticas">
+        <div class="card-stat">
+          <div class="stat-icon">$</div>
+          <div class="stat-content">
+            <p class="stat-label">Ingresos Totales</p>
+            <p class="stat-valor">$125,450.00</p>
+            <p class="stat-cambio">↑ 12.5% desde el mes pasado</p>
+          </div>
+        </div>
+        
+        <div class="card-stat">
+          <div class="stat-icon">B</div>
+          <div class="stat-content">
+            <p class="stat-label">Habitaciones Ocupadas</p>
+            <p class="stat-valor">45/60</p>
+            <p class="stat-cambio">75% de ocupación</p>
+          </div>
+        </div>
+        
+        <div class="card-stat">
+          <div class="stat-icon">C</div>
+          <div class="stat-content">
+            <p class="stat-label">Clientes Activos</p>
+            <p class="stat-valor">127</p>
+            <p class="stat-cambio">↑ 8 nuevos esta semana</p>
+          </div>
+        </div>
+        
+        <div class="card-stat">
+          <div class="stat-icon">R</div>
+          <div class="stat-content">
+            <p class="stat-label">Reservas Pendientes</p>
+            <p class="stat-valor">23</p>
+            <p class="stat-cambio">12 para hoy</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="dashboard-grid">
+        <div class="card card-wide">
+          <h3>Ingresos Este Mes</h3>
+          <div class="chart-placeholder">
+            <p>Gráfico de Ingresos: Enero - $45,890.50</p>
+            <div class="mini-chart">
+              <div class="chart-bar" style="height: 80%;">Semana 1: $12,500</div>
+              <div class="chart-bar" style="height: 90%;">Semana 2: $14,200</div>
+              <div class="chart-bar" style="height: 70%;">Semana 3: $10,800</div>
+              <div class="chart-bar" style="height: 85%;">Semana 4: $13,100</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card card-wide">
+          <h3>Estado de Habitaciones</h3>
+          <div class="habitaciones-status">
+            <div class="status-item">
+              <div class="status-box disponible">Disponibles</div>
+              <p>15 habitaciones</p>
+            </div>
+            <div class="status-item">
+              <div class="status-box ocupada">Ocupadas</div>
+              <p>45 habitaciones</p>
+            </div>
+            <div class="status-item">
+              <div class="status-box mantenimiento">Mantenimiento</div>
+              <p>2 habitaciones</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>Reservas Próximas 7 Días</h3>
+          <table class="tabla tabla-compacta">
+            <thead>
+              <tr>
+                <th>Fecha</th>
+                <th>Cliente</th>
+                <th>Habitación</th>
+                <th>Noches</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>14/01/2026</td>
+                <td>Juan García</td>
+                <td>101</td>
+                <td>3</td>
+              </tr>
+              <tr>
+                <td>15/01/2026</td>
+                <td>María López</td>
+                <td>205</td>
+                <td>2</td>
+              </tr>
+              <tr>
+                <td>16/01/2026</td>
+                <td>Carlos Martínez</td>
+                <td>310</td>
+                <td>5</td>
+              </tr>
+              <tr>
+                <td>17/01/2026</td>
+                <td>Ana Rodríguez</td>
+                <td>102</td>
+                <td>1</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="card">
+          <h3>Valoraciones Recientes</h3>
+          <div class="ratings">
+            <div class="rating-item">
+              <p><strong>Juan García</strong> - Habitación 101</p>
+              <p class="stars">5.0 Excelente servicio</p>
+            </div>
+            <div class="rating-item">
+              <p><strong>María López</strong> - Habitación 205</p>
+              <p class="stars">4.5 Muy bueno</p>
+            </div>
+            <div class="rating-item">
+              <p><strong>Pedro Sánchez</strong> - Habitación 310</p>
+              <p class="stars">5.0 Impeccable</p>
+            </div>
+            <div class="rating-item">
+              <p><strong>Sofia Jiménez</strong> - Habitación 102</p>
+              <p class="stars">4.8 Excelente</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>Actividad Reciente</h3>
+          <div class="actividad">
+            <div class="actividad-item">
+              <span class="actividad-hora">14:30</span>
+              <p>Nueva reserva de Carlos García para habitación 401</p>
+            </div>
+            <div class="actividad-item">
+              <span class="actividad-hora">13:15</span>
+              <p>Check-in de María López en habitación 205</p>
+            </div>
+            <div class="actividad-item">
+              <span class="actividad-hora">12:45</span>
+              <p>Factura #FAC-2026-015 pagada por Juan García</p>
+            </div>
+            <div class="actividad-item">
+              <span class="actividad-hora">11:20</span>
+              <p>Solicitud de servicio de limpieza en habitación 310</p>
+            </div>
+            <div class="actividad-item">
+              <span class="actividad-hora">10:00</span>
+              <p>Nuevo cliente registrado: Ana Pérez López</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Clientes Section -->
+    <section id="clientes" class="seccion">
+      <div class="header-seccion">
+        <h2>Gestión de Clientes</h2>
+        <button class="btn-primary" onclick="abrirFormCliente()">+ Nuevo Cliente</button>
+      </div>
+      
+      <div class="filtros">
+        <input type="text" placeholder="Buscar cliente..." class="input-busqueda">
+        <select class="input-select">
+          <option>Todos</option>
+          <option>Activos</option>
+          <option>VIP</option>
+          <option>Nuevos</option>
+        </select>
+        <select class="input-select">
+          <option>Última actividad</option>
+          <option>Nombre A-Z</option>
+          <option>Más reservas</option>
+        </select>
+      </div>
+
+      <table class="tabla">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Email</th>
+            <th>Teléfono</th>
+            <th>Reservas</th>
+            <th>Gasto Total</th>
+            <th>Estado</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>#1001</td>
+            <td>Juan García López</td>
+            <td>juan@email.com</td>
+            <td>+34 612 345 678</td>
+            <td>5</td>
+            <td>$2,450.00</td>
+            <td><span class="badge-activo">Activo</span></td>
+            <td><button class="btn-small">Editar</button></td>
+          </tr>
+          <tr>
+            <td>#1002</td>
+            <td>María López Martínez</td>
+            <td>maria@email.com</td>
+            <td>+34 623 456 789</td>
+            <td>12</td>
+            <td>$7,800.00</td>
+            <td><span class="badge-vip">VIP</span></td>
+            <td><button class="btn-small">Editar</button></td>
+          </tr>
+          <tr>
+            <td>#1003</td>
+            <td>Carlos Martínez Ruiz</td>
+            <td>carlos@email.com</td>
+            <td>+34 634 567 890</td>
+            <td>3</td>
+            <td>$1,200.00</td>
+            <td><span class="badge-activo">Activo</span></td>
+            <td><button class="btn-small">Editar</button></td>
+          </tr>
+          <tr>
+            <td>#1004</td>
+            <td>Ana Rodríguez García</td>
+            <td>ana@email.com</td>
+            <td>+34 645 678 901</td>
+            <td>8</td>
+            <td>$5,600.00</td>
+            <td><span class="badge-vip">VIP</span></td>
+            <td><button class="btn-small">Editar</button></td>
+          </tr>
+          <tr>
+            <td>#1005</td>
+            <td>Pedro Sánchez López</td>
+            <td>pedro@email.com</td>
+            <td>+34 656 789 012</td>
+            <td>2</td>
+            <td>$950.00</td>
+            <td><span class="badge-activo">Activo</span></td>
+            <td><button class="btn-small">Editar</button></td>
+          </tr>
+          <tr>
+            <td>#1006</td>
+            <td>Sofia Jiménez Martín</td>
+            <td>sofia@email.com</td>
+            <td>+34 667 890 123</td>
+            <td>6</td>
+            <td>$4,200.00</td>
+            <td><span class="badge-activo">Activo</span></td>
+            <td><button class="btn-small">Editar</button></td>
+          </tr>
+          <tr>
+            <td>#1007</td>
+            <td>Francisco Gómez Rivera</td>
+            <td>francisco@email.com</td>
+            <td>+34 678 901 234</td>
+            <td>9</td>
+            <td>$6,150.00</td>
+            <td><span class="badge-vip">VIP</span></td>
+            <td><button class="btn-small">Editar</button></td>
+          </tr>
+          <tr>
+            <td>#1008</td>
+            <td>Elena Fernández Díaz</td>
+            <td>elena@email.com</td>
+            <td>+34 689 012 345</td>
+            <td>4</td>
+            <td>$2,800.00</td>
+            <td><span class="badge-activo">Activo</span></td>
+            <td><button class="btn-small">Editar</button></td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- Reservas Section -->
+    <section id="reservas" class="seccion">
+      <div class="header-seccion">
+        <h2>Gestión de Reservas</h2>
+        <button class="btn-primary" onclick="abrirFormReserva()">+ Nueva Reserva</button>
+      </div>
+
+      <div class="filtros">
+        <select class="input-select">
+          <option>Todas las reservas</option>
+          <option>Confirmadas</option>
+          <option>Pendientes</option>
+          <option>Canceladas</option>
+          <option>Completadas</option>
+        </select>
+        <input type="date" class="input-select">
+        <input type="date" class="input-select">
+      </div>
+
+      <table class="tabla">
+        <thead>
+          <tr>
+            <th>ID Reserva</th>
+            <th>Cliente</th>
+            <th>Habitación</th>
+            <th>Check-in</th>
+            <th>Check-out</th>
+            <th>Noches</th>
+            <th>Precio</th>
+            <th>Estado</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>#RES-001</td>
+            <td>Juan García</td>
+            <td>101 (Doble Lujo)</td>
+            <td>14/01/2026</td>
+            <td>17/01/2026</td>
+            <td>3</td>
+            <td>$450.00</td>
+            <td><span class="badge-confirmada">Confirmada</span></td>
+            <td><button class="btn-small">Ver</button></td>
+          </tr>
+          <tr>
+            <td>#RES-002</td>
+            <td>María López</td>
+            <td>205 (Suite)</td>
+            <td>15/01/2026</td>
+            <td>17/01/2026</td>
+            <td>2</td>
+            <td>$600.00</td>
+            <td><span class="badge-confirmada">Confirmada</span></td>
+            <td><button class="btn-small">Ver</button></td>
+          </tr>
+          <tr>
+            <td>#RES-003</td>
+            <td>Carlos Martínez</td>
+            <td>310 (Habitación Estándar)</td>
+            <td>16/01/2026</td>
+            <td>21/01/2026</td>
+            <td>5</td>
+            <td>$400.00</td>
+            <td><span class="badge-confirmada">Confirmada</span></td>
+            <td><button class="btn-small">Ver</button></td>
+          </tr>
+          <tr>
+            <td>#RES-004</td>
+            <td>Ana Rodríguez</td>
+            <td>102 (Doble Estándar)</td>
+            <td>18/01/2026</td>
+            <td>20/01/2026</td>
+            <td>2</td>
+            <td>$240.00</td>
+            <td><span class="badge-pendiente">Pendiente</span></td>
+            <td><button class="btn-small">Ver</button></td>
+          </tr>
+          <tr>
+            <td>#RES-005</td>
+            <td>Pedro Sánchez</td>
+            <td>401 (Suite Deluxe)</td>
+            <td>22/01/2026</td>
+            <td>25/01/2026</td>
+            <td>3</td>
+            <td>$750.00</td>
+            <td><span class="badge-pendiente">Pendiente</span></td>
+            <td><button class="btn-small">Ver</button></td>
+          </tr>
+          <tr>
+            <td>#RES-006</td>
+            <td>Sofia Jiménez</td>
+            <td>205 (Suite)</td>
+            <td>26/01/2026</td>
+            <td>29/01/2026</td>
+            <td>3</td>
+            <td>$900.00</td>
+            <td><span class="badge-confirmada">Confirmada</span></td>
+            <td><button class="btn-small">Ver</button></td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- Habitaciones Section -->
+    <section id="habitaciones" class="seccion">
+      <div class="header-seccion">
+        <h2>Gestión de Habitaciones</h2>
+        <button class="btn-primary" onclick="abrirFormHabitacion()">+ Nueva Habitación</button>
+      </div>
+
+      <div class="filtros">
+        <select class="input-select">
+          <option>Todas</option>
+          <option>Disponibles</option>
+          <option>Ocupadas</option>
+          <option>Mantenimiento</option>
+        </select>
+        <select class="input-select">
+          <option>Todos los pisos</option>
+          <option>Piso 1</option>
+          <option>Piso 2</option>
+          <option>Piso 3</option>
+          <option>Piso 4</option>
+          <option>Piso 5</option>
+        </select>
+      </div>
+
+      <div class="habitaciones-grid">
+        <div class="card-habitacion">
+          <div class="hab-numero">101</div>
+          <div class="hab-tipo">Doble Lujo</div>
+          <div class="hab-capacidad">2 personas</div>
+          <div class="hab-precio">$150/noche</div>
+          <div class="hab-estado disponible">Disponible</div>
+          <button class="btn-small">Detalles</button>
+        </div>
+
+        <div class="card-habitacion">
+          <div class="hab-numero">102</div>
+          <div class="hab-tipo">Habitación Estándar</div>
+          <div class="hab-capacidad">2 personas</div>
+          <div class="hab-precio">$80/noche</div>
+          <div class="hab-estado ocupada">Ocupada</div>
+          <button class="btn-small">Detalles</button>
+        </div>
+
+        <div class="card-habitacion">
+          <div class="hab-numero">103</div>
+          <div class="hab-tipo">Doble Confort</div>
+          <div class="hab-capacidad">2 personas</div>
+          <div class="hab-precio">$120/noche</div>
+          <div class="hab-estado disponible">Disponible</div>
+          <button class="btn-small">Detalles</button>
+        </div>
+
+        <div class="card-habitacion">
+          <div class="hab-numero">201</div>
+          <div class="hab-tipo">Suite Premium</div>
+          <div class="hab-capacidad">4 personas</div>
+          <div class="hab-precio">$300/noche</div>
+          <div class="hab-estado disponible">Disponible</div>
+          <button class="btn-small">Detalles</button>
+        </div>
+
+        <div class="card-habitacion">
+          <div class="hab-numero">205</div>
+          <div class="hab-tipo">Suite</div>
+          <div class="hab-capacidad">3 personas</div>
+          <div class="hab-precio">$300/noche</div>
+          <div class="hab-estado ocupada">Ocupada</div>
+          <button class="btn-small">Detalles</button>
+        </div>
+
+        <div class="card-habitacion">
+          <div class="hab-numero">310</div>
+          <div class="hab-tipo">Habitación Estándar</div>
+          <div class="hab-capacidad">2 personas</div>
+          <div class="hab-precio">$80/noche</div>
+          <div class="hab-estado ocupada">Ocupada</div>
+          <button class="btn-small">Detalles</button>
+        </div>
+
+        <div class="card-habitacion">
+          <div class="hab-numero">401</div>
+          <div class="hab-tipo">Suite Deluxe</div>
+          <div class="hab-capacidad">4 personas</div>
+          <div class="hab-precio">$250/noche</div>
+          <div class="hab-estado disponible">Disponible</div>
+          <button class="btn-small">Detalles</button>
+        </div>
+
+        <div class="card-habitacion">
+          <div class="hab-numero">502</div>
+          <div class="hab-tipo">Penthouse</div>
+          <div class="hab-capacidad">6 personas</div>
+          <div class="hab-precio">$500/noche</div>
+          <div class="hab-estado mantenimiento">Mantenimiento</div>
+          <button class="btn-small">Detalles</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Servicios Section -->
+    <section id="servicios" class="seccion">
+      <div class="header-seccion">
+        <h2>Gestión de Servicios</h2>
+        <button class="btn-primary" onclick="abrirFormServicio()">+ Nuevo Servicio</button>
+      </div>
+
+      <div class="servicios-grid">
+        <div class="card-servicio">
+          <h3>Limpieza de Habitación</h3>
+          <p class="servicio-desc">Servicio estándar de limpieza</p>
+          <p class="servicio-precio">Incluido</p>
+          <p class="servicio-solicitudes">45 solicitudes activas</p>
+        </div>
+
+        <div class="card-servicio">
+          <h3>Servicio de Habitación</h3>
+          <p class="servicio-desc">Comida y bebidas a la habitación</p>
+          <p class="servicio-precio">$12 - $45</p>
+          <p class="servicio-solicitudes">12 solicitudes activas</p>
+        </div>
+
+        <div class="card-servicio">
+          <h3>Lavandería</h3>
+          <p class="servicio-desc">Servicio de lavado de ropa</p>
+          <p class="servicio-precio">$8 - $25</p>
+          <p class="servicio-solicitudes">8 solicitudes activas</p>
+        </div>
+
+        <div class="card-servicio">
+          <h3>Transporte</h3>
+          <p class="servicio-desc">Servicio de traslado a aeropuerto</p>
+          <p class="servicio-precio">$35 - $50</p>
+          <p class="servicio-solicitudes">3 solicitudes activas</p>
+        </div>
+
+        <div class="card-servicio">
+          <h3>Concierge</h3>
+          <p class="servicio-desc">Asistencia personal 24/7</p>
+          <p class="servicio-precio">$15/hora</p>
+          <p class="servicio-solicitudes">6 solicitudes activas</p>
+        </div>
+
+        <div class="card-servicio">
+          <h3>Spa y Wellness</h3>
+          <p class="servicio-desc">Masajes y tratamientos</p>
+          <p class="servicio-precio">$40 - $120</p>
+          <p class="servicio-solicitudes">4 solicitudes activas</p>
+        </div>
+      </div>
+
+      <h3 style="margin-top: 30px;">Solicitudes de Servicio Pendientes</h3>
+      <table class="tabla">
+        <thead>
+          <tr>
+            <th>Habitación</th>
+            <th>Cliente</th>
+            <th>Servicio</th>
+            <th>Hora Solicitada</th>
+            <th>Prioridad</th>
+            <th>Estado</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>101</td>
+            <td>Juan García</td>
+            <td>Servicio de Habitación</td>
+            <td>14:30</td>
+            <td><span class="badge-alta">Alta</span></td>
+            <td><span class="badge-pendiente">Pendiente</span></td>
+            <td><button class="btn-small">Atender</button></td>
+          </tr>
+          <tr>
+            <td>205</td>
+            <td>María López</td>
+            <td>Limpieza Adicional</td>
+            <td>15:00</td>
+            <td><span class="badge-media">Media</span></td>
+            <td><span class="badge-pendiente">Pendiente</span></td>
+            <td><button class="btn-small">Atender</button></td>
+          </tr>
+          <tr>
+            <td>310</td>
+            <td>Carlos Martínez</td>
+            <td>Lavandería</td>
+            <td>13:00</td>
+            <td><span class="badge-media">Media</span></td>
+            <td><span class="badge-pendiente">En Progreso</span></td>
+            <td><button class="btn-small">Actualizar</button></td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- Facturación Section -->
+    <section id="facturacion" class="seccion">
+      <div class="header-seccion">
+        <h2>Facturación</h2>
+        <button class="btn-primary" onclick="abrirFormFactura()">+ Nueva Factura</button>
+      </div>
+
+      <div class="resumen-financiero">
+        <div class="card-financiera">
+          <h3>Ingresos del Mes</h3>
+          <p class="valor-grande">$45,890.50</p>
+          <p class="cambio">↑ 18.5%</p>
+        </div>
+        <div class="card-financiera">
+          <h3>Facturado Hoy</h3>
+          <p class="valor-grande">$2,450.00</p>
+          <p class="cambio">5 facturas</p>
+        </div>
+        <div class="card-financiera">
+          <h3>Pendiente de Pago</h3>
+          <p class="valor-grande">$8,950.00</p>
+          <p class="cambio">12 facturas</p>
+        </div>
+        <div class="card-financiera">
+          <h3>Total Anual Proyectado</h3>
+          <p class="valor-grande">$1,502,750.00</p>
+          <p class="cambio">Basado en datos actuales</p>
+        </div>
+      </div>
+
+      <table class="tabla">
+        <thead>
+          <tr>
+            <th>Factura</th>
+            <th>Cliente</th>
+            <th>Fecha Emisión</th>
+            <th>Monto</th>
+            <th>IVA (21%)</th>
+            <th>Total</th>
+            <th>Vencimiento</th>
+            <th>Estado</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>#FAC-2026-001</td>
+            <td>Juan García</td>
+            <td>14/01/2026</td>
+            <td>$450.00</td>
+            <td>$94.50</td>
+            <td>$544.50</td>
+            <td>14/02/2026</td>
+            <td><span class="badge-pagada">Pagada</span></td>
+            <td><button class="btn-small">PDF</button></td>
+          </tr>
+          <tr>
+            <td>#FAC-2026-002</td>
+            <td>María López</td>
+            <td>14/01/2026</td>
+            <td>$600.00</td>
+            <td>$126.00</td>
+            <td>$726.00</td>
+            <td>14/02/2026</td>
+            <td><span class="badge-pagada">Pagada</span></td>
+            <td><button class="btn-small">PDF</button></td>
+          </tr>
+          <tr>
+            <td>#FAC-2026-003</td>
+            <td>Carlos Martínez</td>
+            <td>13/01/2026</td>
+            <td>$1,200.00</td>
+            <td>$252.00</td>
+            <td>$1,452.00</td>
+            <td>13/02/2026</td>
+            <td><span class="badge-pendiente">Pendiente</span></td>
+            <td><button class="btn-small">PDF</button></td>
+          </tr>
+          <tr>
+            <td>#FAC-2026-004</td>
+            <td>Ana Rodríguez</td>
+            <td>12/01/2026</td>
+            <td>$350.00</td>
+            <td>$73.50</td>
+            <td>$423.50</td>
+            <td>12/02/2026</td>
+            <td><span class="badge-pagada">Pagada</span></td>
+            <td><button class="btn-small">PDF</button></td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- Reportes Section -->
+    <section id="reportes" class="seccion">
+      <div class="header-seccion">
+        <h2>Reportes</h2>
+        <button class="btn-primary" onclick="generarReporte()">Exportar Reporte</button>
+      </div>
+
+      <div class="reportes-grid">
+        <div class="card-reporte">
+          <h3>Reporte de Ocupación</h3>
+          <p>Ocupación Mensual: 78.5%</p>
+          <p>Habitaciones Promedio: 47/60</p>
+          <p>Ingresos por Ocupación: $89,450</p>
+          <button class="btn-small">Ver Detalles</button>
+        </div>
+
+        <div class="card-reporte">
+          <h3>Reporte Financiero</h3>
+          <p>Ingresos: $125,450</p>
+          <p>Gastos: $54,200</p>
+          <p>Ganancia: $71,250</p>
+          <button class="btn-small">Ver Detalles</button>
+        </div>
+
+        <div class="card-reporte">
+          <h3>Reporte de Clientes</h3>
+          <p>Clientes Nuevos: 18</p>
+          <p>Clientes Recurrentes: 45</p>
+          <p>VIP: 12</p>
+          <button class="btn-small">Ver Detalles</button>
+        </div>
+
+        <div class="card-reporte">
+          <h3>Reporte de Satisfacción</h3>
+          <p>Calificación Promedio: 4.7/5</p>
+          <p>Comentarios Positivos: 94%</p>
+          <p>Tasa de Recomendación: 88%</p>
+          <button class="btn-small">Ver Detalles</button>
+        </div>
+
+        <div class="card-reporte">
+          <h3>Reporte de Empleados</h3>
+          <p>Empleados Activos: 24</p>
+          <p>Ausencias: 2</p>
+          <p>Horas Extras: 48h</p>
+          <button class="btn-small">Ver Detalles</button>
+        </div>
+
+        <div class="card-reporte">
+          <h3>Reporte de Servicios</h3>
+          <p>Servicios Solicitados: 156</p>
+          <p>Servicios Completados: 152</p>
+          <p>Tasa Cumplimiento: 97.4%</p>
+          <button class="btn-small">Ver Detalles</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Empleados Section -->
+    <section id="empleados" class="seccion">
+      <div class="header-seccion">
+        <h2>Gestión de Empleados</h2>
+        <button class="btn-primary" onclick="abrirFormEmpleado()">+ Nuevo Empleado</button>
+      </div>
+
+      <div class="filtros">
+        <input type="text" placeholder="Buscar empleado..." class="input-busqueda">
+        <select class="input-select">
+          <option>Todos</option>
+          <option>Recepción</option>
+          <option>Limpieza</option>
+          <option>Cocina</option>
+          <option>Servicio</option>
+          <option>Administración</option>
+        </select>
+      </div>
+
+      <table class="tabla">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Departamento</th>
+            <th>Puesto</th>
+            <th>Teléfono</th>
+            <th>Fecha Ingreso</th>
+            <th>Estado</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>#E001</td>
+            <td>Roberto García López</td>
+            <td>Recepción</td>
+            <td>Recepcionista</td>
+            <td>+34 612 111 222</td>
+            <td>01/06/2023</td>
+            <td><span class="badge-activo">Activo</span></td>
+            <td><button class="btn-small">Editar</button></td>
+          </tr>
+          <tr>
+            <td>#E002</td>
+            <td>Marta Rodríguez Díaz</td>
+            <td>Limpieza</td>
+            <td>Supervisora</td>
+            <td>+34 612 222 333</td>
+            <td>15/03/2022</td>
+            <td><span class="badge-activo">Activo</span></td>
+            <td><button class="btn-small">Editar</button></td>
+          </tr>
+          <tr>
+            <td>#E003</td>
+            <td>Luis Fernández García</td>
+            <td>Cocina</td>
+            <td>Chef Principal</td>
+            <td>+34 612 333 444</td>
+            <td>10/01/2021</td>
+            <td><span class="badge-activo">Activo</span></td>
+            <td><button class="btn-small">Editar</button></td>
+          </tr>
+          <tr>
+            <td>#E004</td>
+            <td>Carmen López Martínez</td>
+            <td>Servicio</td>
+            <td>Camarera</td>
+            <td>+34 612 444 555</td>
+            <td>20/08/2023</td>
+            <td><span class="badge-activo">Activo</span></td>
+            <td><button class="btn-small">Editar</button></td>
+          </tr>
+          <tr>
+            <td>#E005</td>
+            <td>Miguel Sánchez Ruiz</td>
+            <td>Administración</td>
+            <td>Contador</td>
+            <td>+34 612 555 666</td>
+            <td>05/02/2022</td>
+            <td><span class="badge-activo">Activo</span></td>
+            <td><button class="btn-small">Editar</button></td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- Configuración Section -->
+    <section id="configuracion" class="seccion">
+      <div class="header-seccion">
+        <h2>Configuración del Sistema</h2>
+      </div>
+
+      <div class="config-group">
+        <h3>Perfil de Usuario</h3>
+        <div class="config-item">
+          <label>Nombre:</label>
+          <input type="text" value="Administrador Sistema" class="input-config">
+        </div>
+        <div class="config-item">
+          <label>Email:</label>
+          <input type="email" value="admin@hotelpro.com" class="input-config">
+        </div>
+        <div class="config-item">
+          <label>Teléfono:</label>
+          <input type="tel" value="+34 600 000 000" class="input-config">
+        </div>
+        <div class="config-item">
+          <label>Departamento:</label>
+          <input type="text" value="Administración" class="input-config">
+        </div>
+        <button class="btn-primary" onclick="guardarConfig()">Guardar Cambios</button>
+      </div>
+
+      <div class="config-group">
+        <h3>Información del Hotel</h3>
+        <div class="config-item">
+          <label>Nombre del Hotel:</label>
+          <input type="text" value="Hotel Pro Premium" class="input-config">
+        </div>
+        <div class="config-item">
+          <label>Dirección:</label>
+          <input type="text" value="Calle Principal 123, Madrid 28001" class="input-config">
+        </div>
+        <div class="config-item">
+          <label>Teléfono:</label>
+          <input type="tel" value="+34 900 000 000" class="input-config">
+        </div>
+        <div class="config-item">
+          <label>Email Corporativo:</label>
+          <input type="email" value="info@hotelpro.com" class="input-config">
+        </div>
+        <div class="config-item">
+          <label>Sitio Web:</label>
+          <input type="url" value="https://www.hotelpro.com" class="input-config">
+        </div>
+        <div class="config-item">
+          <label>Cantidad de Habitaciones:</label>
+          <input type="number" value="60" class="input-config">
+        </div>
+        <button class="btn-primary" onclick="guardarConfig()">Guardar Cambios</button>
+      </div>
+
+      <div class="config-group">
+        <h3>Configuración de Precios</h3>
+        <div class="config-item">
+          <label>Precio Base Temporada Baja:</label>
+          <input type="number" value="80" class="input-config" placeholder="$">
+        </div>
+        <div class="config-item">
+          <label>Precio Base Temporada Alta:</label>
+          <input type="number" value="150" class="input-config" placeholder="$">
+        </div>
+        <div class="config-item">
+          <label>Tarifa IVA (%):</label>
+          <input type="number" value="21" class="input-config" placeholder="%">
+        </div>
+        <button class="btn-primary" onclick="guardarConfig()">Guardar Cambios</button>
+      </div>
+
+      <div class="config-group">
+        <h3>Seguridad</h3>
+        <div class="config-item">
+          <label>Cambiar Contraseña Actual:</label>
+          <input type="password" placeholder="Contraseña Actual" class="input-config">
+        </div>
+        <div class="config-item">
+          <label>Nueva Contraseña:</label>
+          <input type="password" placeholder="Nueva Contraseña" class="input-config">
+        </div>
+        <div class="config-item">
+          <label>Confirmar Contraseña:</label>
+          <input type="password" placeholder="Confirmar Contraseña" class="input-config">
+        </div>
+        <button class="btn-primary" onclick="cambiarPassword()">Cambiar Contraseña</button>
+      </div>
+
+      <div class="config-group">
+        <h3>Respaldo y Datos</h3>
+        <p>Última copia de seguridad: 14/01/2026 - 02:30 AM</p>
+        <button class="btn-primary" onclick="hacerRespaldo()">Realizar Respaldo Ahora</button>
+        <button class="btn-small" onclick="descargarDatos()">Descargar Datos</button>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    // Mostrar sección
+    function mostrarSeccion(id) {
+      document.querySelectorAll('.seccion').forEach(s => s.classList.remove('activa'));
+      document.getElementById(id).classList.add('activa');
+      
+      document.querySelectorAll('.menu-item').forEach(m => m.classList.remove('active'));
+      event.target.classList.add('active');
+    }
+
+    // Funciones auxiliares
+    function abrirFormCliente() { alert('Abrir formulario de cliente'); }
+    function abrirFormReserva() { alert('Abrir formulario de reserva'); }
+    function abrirFormHabitacion() { alert('Abrir formulario de habitación'); }
+    function abrirFormFactura() { alert('Abrir formulario de factura'); }
+    function abrirFormServicio() { alert('Abrir formulario de servicio'); }
+    function abrirFormEmpleado() { alert('Abrir formulario de empleado'); }
+    function generarReporte() { alert('Generando reporte...'); }
+    function guardarConfig() { alert('Configuración guardada correctamente'); }
+    function cambiarPassword() { alert('Contraseña actualizada correctamente'); }
+    function hacerRespaldo() { alert('Respaldo en progreso...'); }
+    function descargarDatos() { alert('Descargando datos...'); }
+    function logout() {
+      if(confirm('¿Estás seguro que deseas cerrar sesión?')) {
+        window.location.href = '/login.html';
+      }
+    }
+
+    // Actualizar fecha y hora
+    function actualizarFechaHora() {
+      const ahora = new Date();
+      const opciones = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+      const fecha = ahora.toLocaleDateString('es-ES', opciones);
+      const hora = ahora.toLocaleTimeString('es-ES');
+      
+      document.getElementById('fecha').textContent = fecha;
+      document.getElementById('hora').textContent = hora;
+    }
+
+    actualizarFechaHora();
+    setInterval(actualizarFechaHora, 1000);
+  </script>
+
+</body>
+</html>
+
+  <!-- Main Content -->
+  <main class="main-content">
+    <header class="header">
+      <h1>Sistema de Gestión Hotelera</h1>
+      <div class="header-info">
+        <div class="info-item">
+          <span class="info-label">Fecha:</span>
+          <span id="fecha"></span>
+        </div>
+        <div class="info-item">
+          <span class="info-label">Hora:</span>
+          <span id="hora"></span>
+        </div>
+      </div>
+    </header>
+
+    <!-- Dashboard Section -->
+    <section id="dashboard" class="seccion activa">
+      <div class="estadisticas">
+        <div class="card-stat">
+          <div class="stat-icon">I</div>
+          <div class="stat-content">
+            <p class="stat-label">Ingresos Totales</p>
+            <p class="stat-valor">$125,450.00</p>
+            <p class="stat-cambio">↑ 12.5% desde el mes pasado</p>
+          </div>
+        </div>
+        
+        <div class="card-stat">
+          <div class="stat-icon">H</div>
+          <div class="stat-content">
+            <p class="stat-label">Habitaciones Ocupadas</p>
+            <p class="stat-valor">45/60</p>
+            <p class="stat-cambio">75% de ocupación</p>
+          </div>
+        </div>
+        
+        <div class="card-stat">
+          <div class="stat-icon">C</div>
+          <div class="stat-content">
+            <p class="stat-label">Clientes Activos</p>
+            <p class="stat-valor">127</p>
+            <p class="stat-cambio">↑ 8 nuevos esta semana</p>
+          </div>
+        </div>
+        
+        <div class="card-stat">
+          <div class="stat-icon">R</div>
+          <div class="stat-content">
+            <p class="stat-label">Reservas Pendientes</p>
+            <p class="stat-valor">23</p>
+            <p class="stat-cambio">12 para hoy</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="dashboard-grid">
+        <div class="card">
+          <h3>Ingresos Este Mes</h3>
+          <div class="chart-placeholder">
+            <p>Gráfico de Ingresos: Enero - $45,890.50</p>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>🏨 Estado de Habitaciones</h3>
+          <div class="chart-placeholder">
+            <canvas id="chartHabitaciones"></canvas>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>Reservas Próximas 7 Días</h3>
+          <table class="tabla">
+            <thead>
+              <tr>
+                <th>Fecha</th>
+                <th>Cliente</th>
+                <th>Habitación</th>
+                <th>Noches</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>14/01/2026</td>
+                <td>Juan García</td>
+                <td>101</td>
+                <td>3</td>
+              </tr>
+              <tr>
+                <td>15/01/2026</td>
+                <td>María López</td>
+                <td>205</td>
+                <td>2</td>
+              </tr>
+              <tr>
+                <td>16/01/2026</td>
+                <td>Carlos Martínez</td>
+                <td>310</td>
+                <td>5</td>
+              </tr>
+              <tr>
+                <td>17/01/2026</td>
+                <td>Ana Rodríguez</td>
+                <td>102</td>
+                <td>1</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="card">
+          <h3>⭐ Valoraciones Recientes</h3>
+          <div class="ratings">
+            <div class="rating-item">
+              <p><strong>Juan García</strong> - Habitación 101</p>
+              <p>⭐⭐⭐⭐⭐ Excelente servicio</p>
+            </div>
+            <div class="rating-item">
+              <p><strong>María López</strong> - Habitación 205</p>
+              <p>⭐⭐⭐⭐ Muy bueno</p>
+            </div>
+            <div class="rating-item">
+              <p><strong>Pedro Sánchez</strong> - Habitación 310</p>
+              <p>⭐⭐⭐⭐⭐ Impeccable</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Clientes Section -->
+    <section id="clientes" class="seccion">
+      <div class="header-seccion">
+        <h2>Gestión de Clientes</h2>
+        <button class="btn-primary" onclick="abrirFormCliente()">+ Nuevo Cliente</button>
+      </div>
+      
+      <div class="filtros">
+        <input type="text" placeholder="Buscar cliente..." class="input-busqueda">
+        <select class="input-select">
+          <option>Todos</option>
+          <option>Activos</option>
+          <option>VIP</option>
+        </select>
+      </div>
+
+      <table class="tabla">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Email</th>
+            <th>Teléfono</th>
+            <th>Reservas</th>
+            <th>Estado</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>#1001</td>
+            <td>Juan García López</td>
+            <td>juan@email.com</td>
+            <td>+34 612 345 678</td>
+            <td>5</td>
+            <td><span class="badge-activo">Activo</span></td>
+            <td><button class="btn-small">✏️ Editar</button></td>
+          </tr>
+          <tr>
+            <td>#1002</td>
+            <td>María López Martínez</td>
+            <td>maria@email.com</td>
+            <td>+34 623 456 789</td>
+            <td>12</td>
+            <td><span class="badge-vip">VIP</span></td>
+            <td><button class="btn-small">✏️ Editar</button></td>
+          </tr>
+          <tr>
+            <td>#1003</td>
+            <td>Carlos Martínez Ruiz</td>
+            <td>carlos@email.com</td>
+            <td>+34 634 567 890</td>
+            <td>3</td>
+            <td><span class="badge-activo">Activo</span></td>
+            <td><button class="btn-small">✏️ Editar</button></td>
+          </tr>
+          <tr>
+            <td>#1004</td>
+            <td>Ana Rodríguez García</td>
+            <td>ana@email.com</td>
+            <td>+34 645 678 901</td>
+            <td>8</td>
+            <td><span class="badge-vip">VIP</span></td>
+            <td><button class="btn-small">✏️ Editar</button></td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- Reservas Section -->
+    <section id="reservas" class="seccion">
+      <div class="header-seccion">
+        <h2>Gestión de Reservas</h2>
+        <button class="btn-primary" onclick="abrirFormReserva()">+ Nueva Reserva</button>
+      </div>
+
+      <div class="filtros">
+        <select class="input-select">
+          <option>Todas las reservas</option>
+          <option>Confirmadas</option>
+          <option>Pendientes</option>
+          <option>Canceladas</option>
+        </select>
+      </div>
+
+      <table class="tabla">
+        <thead>
+          <tr>
+            <th>ID Reserva</th>
+            <th>Cliente</th>
+            <th>Habitación</th>
+            <th>Check-in</th>
+            <th>Check-out</th>
+            <th>Precio</th>
+            <th>Estado</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>#RES-001</td>
+            <td>Juan García</td>
+            <td>101 (Doble Lujo)</td>
+            <td>14/01/2026</td>
+            <td>17/01/2026</td>
+            <td>$450.00</td>
+            <td><span class="badge-confirmada">Confirmada</span></td>
+            <td><button class="btn-small">Ver</button></td>
+          </tr>
+          <tr>
+            <td>#RES-002</td>
+            <td>María López</td>
+            <td>205 (Suite)</td>
+            <td>15/01/2026</td>
+            <td>17/01/2026</td>
+            <td>$600.00</td>
+            <td><span class="badge-confirmada">Confirmada</span></td>
+            <td><button class="btn-small">Ver</button></td>
+          </tr>
+          <tr>
+            <td>#RES-003</td>
+            <td>Carlos Martínez</td>
+            <td>310 (Habitación Estándar)</td>
+            <td>16/01/2026</td>
+            <td>21/01/2026</td>
+            <td>$400.00</td>
+            <td><span class="badge-confirmada">Confirmada</span></td>
+            <td><button class="btn-small">📋 Ver</button></td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- Habitaciones Section -->
+    <section id="habitaciones" class="seccion">
+      <div class="header-seccion">
+        <h2>Gestión de Habitaciones</h2>
+        <button class="btn-primary" onclick="abrirFormHabitacion()">+ Nueva Habitación</button>
+      </div>
+
+      <div class="filtros">
+        <select class="input-select">
+          <option>Todas</option>
+          <option>Disponibles</option>
+          <option>Ocupadas</option>
+          <option>Mantenimiento</option>
+        </select>
+      </div>
+
+      <div class="habitaciones-grid">
+        <div class="card-habitacion">
+          <div class="hab-numero">101</div>
+          <div class="hab-tipo">Doble Lujo</div>
+          <div class="hab-precio">$150/noche</div>
+          <div class="hab-estado disponible">Disponible</div>
+          <button class="btn-small">Detalles</button>
+        </div>
+
+        <div class="card-habitacion">
+          <div class="hab-numero">102</div>
+          <div class="hab-tipo">Habitación Estándar</div>
+          <div class="hab-precio">$80/noche</div>
+          <div class="hab-estado ocupada">Ocupada</div>
+          <button class="btn-small">📋 Detalles</button>
+        </div>
+
+        <div class="card-habitacion">
+          <div class="hab-numero">205</div>
+          <div class="hab-tipo">Suite Premium</div>
+          <div class="hab-precio">$300/noche</div>
+          <div class="hab-estado disponible">Disponible</div>
+          <button class="btn-small">Detalles</button>
+        </div>
+
+        <div class="card-habitacion">
+          <div class="hab-numero">310</div>
+          <div class="hab-tipo">Habitación Estándar</div>
+          <div class="hab-precio">$80/noche</div>
+          <div class="hab-estado ocupada">Ocupada</div>
+          <button class="btn-small">Detalles</button>
+        </div>
+
+        <div class="card-habitacion">
+          <div class="hab-numero">401</div>
+          <div class="hab-tipo">Suite Deluxe</div>
+          <div class="hab-precio">$250/noche</div>
+          <div class="hab-estado disponible">Disponible</div>
+          <button class="btn-small">Detalles</button>
+        </div>
+
+        <div class="card-habitacion">
+          <div class="hab-numero">502</div>
+          <div class="hab-tipo">Penthouse</div>
+          <div class="hab-precio">$500/noche</div>
+          <div class="hab-estado mantenimiento">Mantenimiento</div>
+          <button class="btn-small">Detalles</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Facturación Section -->
+    <section id="facturacion" class="seccion">
+      <div class="header-seccion">
+        <h2>💰 Facturación</h2>
+        <button class="btn-primary" onclick="abrirFormFactura()">+ Nueva Factura</button>
+      </div>
+
+      <div class="resumen-financiero">
+        <div class="card-financiera">
+          <h3>Ingresos del Mes</h3>
+          <p class="valor-grande">$45,890.50</p>
+          <p class="cambio">↑ 18.5%</p>
+        </div>
+        <div class="card-financiera">
+          <h3>Facturado Hoy</h3>
+          <p class="valor-grande">$2,450.00</p>
+          <p class="cambio">5 facturas</p>
+        </div>
+        <div class="card-financiera">
+          <h3>Pendiente de Pago</h3>
+          <p class="valor-grande">$8,950.00</p>
+          <p class="cambio">12 facturas</p>
+        </div>
+      </div>
+
+      <table class="tabla">
+        <thead>
+          <tr>
+            <th>Factura</th>
+            <th>Cliente</th>
+            <th>Fecha</th>
+            <th>Monto</th>
+            <th>Estado</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>#FAC-2026-001</td>
+            <td>Juan García</td>
+            <td>14/01/2026</td>
+            <td>$450.00</td>
+            <td><span class="badge-pagada">Pagada</span></td>
+            <td><button class="btn-small">📄 PDF</button></td>
+          </tr>
+          <tr>
+            <td>#FAC-2026-002</td>
+            <td>María López</td>
+            <td>14/01/2026</td>
+            <td>$600.00</td>
+            <td><span class="badge-pagada">Pagada</span></td>
+            <td><button class="btn-small">📄 PDF</button></td>
+          </tr>
+          <tr>
+            <td>#FAC-2026-003</td>
+            <td>Carlos Martínez</td>
+            <td>13/01/2026</td>
+            <td>$1,200.00</td>
+            <td><span class="badge-pendiente">Pendiente</span></td>
+            <td><button class="btn-small">📄 PDF</button></td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- Reportes Section -->
+    <section id="reportes" class="seccion">
+      <div class="header-seccion">
+        <h2>📈 Reportes</h2>
+        <button class="btn-primary" onclick="generarReporte()">⬇️ Exportar Reporte</button>
+      </div>
+
+      <div class="reportes-grid">
+        <div class="card-reporte">
+          <h3>📊 Reporte de Ocupación</h3>
+          <p>Ocupación Mensual: 78.5%</p>
+          <p>Habitaciones Promedio: 47/60</p>
+          <button class="btn-small">Ver Detalles</button>
+        </div>
+
+        <div class="card-reporte">
+          <h3>💵 Reporte Financiero</h3>
+          <p>Ingresos: $125,450</p>
+          <p>Gastos: $54,200</p>
+          <p>Ganancia: $71,250</p>
+          <button class="btn-small">Ver Detalles</button>
+        </div>
+
+        <div class="card-reporte">
+          <h3>👥 Reporte de Clientes</h3>
+          <p>Clientes Nuevos: 18</p>
+          <p>Clientes Recurrentes: 45</p>
+          <p>VIP: 12</p>
+          <button class="btn-small">Ver Detalles</button>
+        </div>
+
+        <div class="card-reporte">
+          <h3>⭐ Reporte de Satisfacción</h3>
+          <p>Calificación Promedio: 4.7/5</p>
+          <p>Comentarios Positivos: 94%</p>
+          <button class="btn-small">Ver Detalles</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Inventario Section -->
+    <section id="inventario" class="seccion">
+      <div class="header-seccion">
+        <h2>Gestión de Inventario</h2>
+        <button class="btn-primary" onclick="abrirFormInventario()">+ Nuevo Ítem</button>
+      </div>
+
+      <table class="tabla">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Artículo</th>
+            <th>Categoría</th>
+            <th>Stock</th>
+            <th>Stock Mín</th>
+            <th>Proveedor</th>
+            <th>Estado</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>#INV-001</td>
+            <td>Sábanas Blancas</td>
+            <td>Textiles</td>
+            <td>150</td>
+            <td>50</td>
+            <td>TextilMax</td>
+            <td><span class="badge-disponible">Disponible</span></td>
+            <td><button class="btn-small">Editar</button></td>
+          </tr>
+          <tr>
+            <td>#INV-002</td>
+            <td>Toallas Premium</td>
+            <td>Textiles</td>
+            <td>25</td>
+            <td>40</td>
+            <td>TextilMax</td>
+            <td><span class="badge-critico">Crítico</span></td>
+            <td><button class="btn-small">Editar</button></td>
+          </tr>
+          <tr>
+            <td>#INV-003</td>
+            <td>Jabón Líquido</td>
+            <td>Limpieza</td>
+            <td>80</td>
+            <td>30</td>
+            <td>CleanPro</td>
+            <td><span class="badge-disponible">Disponible</span></td>
+            <td><button class="btn-small">Editar</button></td>
+          </tr>
+          <tr>
+            <td>#INV-004</td>
+            <td>Café Premium</td>
+            <td>Alimentos</td>
+            <td>12</td>
+            <td>20</td>
+            <td>CafésGourmet</td>
+            <td><span class="badge-bajo">Bajo</span></td>
+            <td><button class="btn-small">Editar</button></td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- Eventos Section -->
+    <section id="eventos" class="seccion">
+      <div class="header-seccion">
+        <h2>Gestión de Eventos</h2>
+        <button class="btn-primary" onclick="abrirFormEvento()">+ Nuevo Evento</button>
+      </div>
+
+      <div class="eventos-grid">
+        <div class="card-evento">
+          <h3>Conferencia Negocios 2026</h3>
+          <p class="evento-fecha">20-22 de Enero</p>
+          <p class="evento-capacidad">200 personas</p>
+          <p class="evento-salones">Salón Principal, Ejecutivo</p>
+          <p class="evento-estado"><span class="badge-confirmada">Confirmado</span></p>
+          <button class="btn-small">Detalles</button>
+        </div>
+
+        <div class="card-evento">
+          <h3>Boda García-López</h3>
+          <p class="evento-fecha">15 de Febrero, 19:00</p>
+          <p class="evento-capacidad">150 personas</p>
+          <p class="evento-salones">Banquetes, Jardín</p>
+          <p class="evento-estado"><span class="badge-confirmada">Confirmado</span></p>
+          <button class="btn-small">Detalles</button>
+        </div>
+
+        <div class="card-evento">
+          <h3>Seminario Marketing Digital</h3>
+          <p class="evento-fecha">28 de Enero, 9:00</p>
+          <p class="evento-capacidad">80 personas</p>
+          <p class="evento-salones">Conferencias B</p>
+          <p class="evento-estado"><span class="badge-pendiente">Pendiente</span></p>
+          <button class="btn-small">Detalles</button>
+        </div>
+
+        <div class="card-evento">
+          <h3>Cena de Gala Anual</h3>
+          <p class="evento-fecha">10 de Febrero, 20:00</p>
+          <p class="evento-capacidad">250 personas</p>
+          <p class="evento-salones">Principal, VIP</p>
+          <p class="evento-estado"><span class="badge-confirmada">Confirmado</span></p>
+          <button class="btn-small">Detalles</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Mantenimiento Section -->
+    <section id="mantenimiento" class="seccion">
+      <div class="header-seccion">
+        <h2>Gestión de Mantenimiento</h2>
+        <button class="btn-primary" onclick="abrirFormMantenimiento()">+ Nuevo Mantenimiento</button>
+      </div>
+
+      <table class="tabla">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Área/Habitación</th>
+            <th>Descripción</th>
+            <th>Prioridad</th>
+            <th>Técnico</th>
+            <th>Fecha</th>
+            <th>Estado</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>#MANT-001</td>
+            <td>Habitación 502</td>
+            <td>AC no funciona</td>
+            <td><span class="badge-alta">Alta</span></td>
+            <td>Carlos Ruiz</td>
+            <td>14/01</td>
+            <td><span class="badge-pendiente">Pendiente</span></td>
+            <td><button class="btn-small">Asignar</button></td>
+          </tr>
+          <tr>
+            <td>#MANT-002</td>
+            <td>Cocina</td>
+            <td>Horno roto</td>
+            <td><span class="badge-alta">Alta</span></td>
+            <td>Miguel Sánchez</td>
+            <td>14/01</td>
+            <td><span class="badge-progreso">En Progreso</span></td>
+            <td><button class="btn-small">Seguimiento</button></td>
+          </tr>
+          <tr>
+            <td>#MANT-003</td>
+            <td>Baño Piso 3</td>
+            <td>Grifo con fuga</td>
+            <td><span class="badge-media">Media</span></td>
+            <td>Juan Pérez</td>
+            <td>13/01</td>
+            <td><span class="badge-completada">Completada</span></td>
+            <td><button class="btn-small">Cerrar</button></td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- Marketing Section -->
+    <section id="marketing" class="seccion">
+      <div class="header-seccion">
+        <h2>Gestión de Marketing</h2>
+        <button class="btn-primary" onclick="abrirFormCampana()">+ Nueva Campaña</button>
+      </div>
+
+      <div class="marketing-grid">
+        <div class="card">
+          <h3>Campañas Activas</h3>
+          <div class="campana-item">
+            <p><strong>Pack Fin de Semana</strong> - 15% descuento</p>
+            <p class="campana-stats">Alcance: 5,200 | Conversiones: 156</p>
+            <p class="campana-roi">ROI: 245%</p>
+          </div>
+          <div class="campana-item">
+            <p><strong>Luna de Miel</strong> - Suite Deluxe Gratis</p>
+            <p class="campana-stats">Alcance: 3,100 | Conversiones: 89</p>
+            <p class="campana-roi">ROI: 312%</p>
+          </div>
+          <div class="campana-item">
+            <p><strong>Estancia Larga</strong> - 20% en 7+ noches</p>
+            <p class="campana-stats">Alcance: 4,800 | Conversiones: 203</p>
+            <p class="campana-roi">ROI: 198%</p>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>Redes Sociales</h3>
+          <table class="tabla tabla-compacta">
+            <thead>
+              <tr>
+                <th>Red</th>
+                <th>Seguidores</th>
+                <th>Engagement</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Instagram</td>
+                <td>15,200</td>
+                <td>8.5%</td>
+              </tr>
+              <tr>
+                <td>Facebook</td>
+                <td>8,900</td>
+                <td>4.2%</td>
+              </tr>
+              <tr>
+                <td>Twitter</td>
+                <td>5,600</td>
+                <td>3.1%</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+    <section id="configuracion" class="seccion">
+      <div class="header-seccion">
+        <h2>⚙️ Configuración del Sistema</h2>
+      </div>
+
+      <div class="config-group">
+        <h3>👤 Perfil de Usuario</h3>
+        <div class="config-item">
+          <label>Nombre:</label>
+          <input type="text" value="Administrador" class="input-config">
+        </div>
+        <div class="config-item">
+          <label>Email:</label>
+          <input type="email" value="admin@hotel.com" class="input-config">
+        </div>
+        <div class="config-item">
+          <label>Teléfono:</label>
+          <input type="tel" value="+34 600 000 000" class="input-config">
+        </div>
+        <button class="btn-primary" onclick="guardarConfig()">💾 Guardar Cambios</button>
+      </div>
+
+      <div class="config-group">
+        <h3>🏨 Información del Hotel</h3>
+        <div class="config-item">
+          <label>Nombre del Hotel:</label>
+          <input type="text" value="Hotel Pro Premium" class="input-config">
+        </div>
+        <div class="config-item">
+          <label>Dirección:</label>
+          <input type="text" value="Calle Principal 123, Madrid" class="input-config">
+        </div>
+        <div class="config-item">
+          <label>Teléfono:</label>
+          <input type="tel" value="+34 900 000 000" class="input-config">
+        </div>
+        <button class="btn-primary" onclick="guardarConfig()">💾 Guardar Cambios</button>
+      </div>
+
+      <div class="config-group">
+        <h3>🔒 Seguridad</h3>
+        <div class="config-item">
+          <label>Cambiar Contraseña:</label>
+          <input type="password" placeholder="Contraseña Actual" class="input-config">
+          <input type="password" placeholder="Nueva Contraseña" class="input-config">
+          <input type="password" placeholder="Confirmar Contraseña" class="input-config">
+        </div>
+        <button class="btn-primary" onclick="cambiarPassword()">🔐 Cambiar Contraseña</button>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    // Mostrar sección
+    function mostrarSeccion(id) {
+      document.querySelectorAll('.seccion').forEach(s => s.classList.remove('activa'));
+      document.getElementById(id).classList.add('activa');
+      
+      document.querySelectorAll('.menu-item').forEach(m => m.classList.remove('active'));
+      event.target.classList.add('active');
+    }
+
+    // Funciones auxiliares
+    function abrirFormCliente() { alert('Abrir formulario de cliente'); }
+    function abrirFormReserva() { alert('Abrir formulario de reserva'); }
+    function abrirFormHabitacion() { alert('Abrir formulario de habitación'); }
+    function abrirFormFactura() { alert('Abrir formulario de factura'); }
+    function abrirFormServicio() { alert('Abrir formulario de servicio'); }
+    function abrirFormInventario() { alert('Abrir formulario de inventario'); }
+    function abrirFormEvento() { alert('Abrir formulario de evento'); }
+    function abrirFormMantenimiento() { alert('Abrir formulario de mantenimiento'); }
+    function abrirFormEmpleado() { alert('Abrir formulario de empleado'); }
+    function abrirFormCampana() { alert('Abrir formulario de campaña'); }
+    function generarReporte() { alert('Generando reporte...'); }
+    function guardarConfig() { alert('Configuración guardada'); }
+    function cambiarPassword() { alert('Contraseña actualizada'); }
+    function hacerRespaldo() { alert('Respaldo en progreso...'); }
+    function descargarDatos() { alert('Descargando datos...'); }
+    function logout() {
+      if(confirm('¿Estás seguro que deseas cerrar sesión?')) {
+        window.location.href = '/login.html';
+      }
+    }
+
+    // Actualizar fecha y hora
+    function actualizarFechaHora() {
+      const ahora = new Date();
+      const opciones = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+      const fecha = ahora.toLocaleDateString('es-ES', opciones);
+      const hora = ahora.toLocaleTimeString('es-ES');
+      
+      document.getElementById('fecha').textContent = fecha;
+      document.getElementById('hora').textContent = hora;
+    }
+
+    actualizarFechaHora();
+    setInterval(actualizarFechaHora, 1000);
+  </script>
+
+</body>
+</html>
